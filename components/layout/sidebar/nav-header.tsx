@@ -1,35 +1,55 @@
 'use client'
 
-import * as React from 'react'
-import { PanelsLeftBottom } from 'lucide-react'
+import { Session } from 'next-auth'
 
-import { SidebarTrigger, useSidebar } from '@/components/ui/sidebar'
-import { ThemeToggle } from '@/components/layout/theme-toggle'
+import { Avatar, AvatarFallback } from '@/components/ui/avatar'
+import {
+  SidebarMenu,
+  SidebarMenuButton,
+  SidebarMenuItem,
+  SidebarTrigger,
+  useSidebar,
+} from '@/components/ui/sidebar'
+import { ThemeToggle } from '../theme-toggle'
 
-export function NavHeader() {
+export function NavUser({ user }: { user: Session | null }) {
   const { open } = useSidebar()
 
+  const getUserInitials = (name: string | null | undefined) => {
+    if (!name) return 'NM'
+    const initials = name
+      .split(' ')
+      .map((part) => part[0])
+      .join('')
+      .toUpperCase()
+    return initials.slice(0, 2)
+  }
+
   return (
-    <div className="flex gap-2 justify-between items-center w-full">
-      {open ? (
-        <>
-          <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center">
-            <PanelsLeftBottom className="icon-size text-primary" />
-          </div>
-          <div className="grid flex-1 text-left text-sm leading-tight">
-            <span className="truncate font-semibold">Template</span>
-            <span className="truncate text-xs text-muted-foreground">
-              Nextjs
-            </span>
-          </div>
-          <div className="flex items-center justify-between">
+    <SidebarMenu>
+      <SidebarMenuItem>
+        {open ? (
+          <SidebarMenuButton
+            size="lg"
+            className="bg-transparent hover:bg-transparent cursor-default outline-none teste-de-classe"
+          >
+            <Avatar className="h-8 w-8 rounded-full">
+              <AvatarFallback className="rounded-lg">
+                {getUserInitials(user?.user?.name)}
+              </AvatarFallback>
+            </Avatar>
+            <div className="grid flex-1 text-left text-sm leading-tight">
+              <span className="truncate font-semibold">
+                {user?.user?.name ?? 'Natalia Manosso'}
+              </span>
+            </div>
             <SidebarTrigger />
             <ThemeToggle />
-          </div>
-        </>
-      ) : (
-        <SidebarTrigger />
-      )}
-    </div>
+          </SidebarMenuButton>
+        ) : (
+          <SidebarTrigger />
+        )}
+      </SidebarMenuItem>
+    </SidebarMenu>
   )
 }

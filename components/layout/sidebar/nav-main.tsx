@@ -38,7 +38,7 @@ export function NavMain({
 
   return (
     <SidebarGroup>
-      <SidebarGroupLabel>Menu</SidebarGroupLabel>
+      <SidebarGroupLabel className='uppercase tracking-widest'>Menu</SidebarGroupLabel>
       <SidebarMenu>
         {items.map((item) => (
           <Collapsible
@@ -50,7 +50,7 @@ export function NavMain({
             className="group/collapsible"
           >
             {item.items?.length ? (
-              <SidebarMenuItem>
+              <SidebarMenuItem >
                 <CollapsibleTrigger asChild>
                   <SidebarMenuButton tooltip={item.title}>
                     {item.icon && <item.icon size={16} />}

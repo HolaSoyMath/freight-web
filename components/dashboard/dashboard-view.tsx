@@ -8,7 +8,7 @@ import { DashboardPriceChart } from '@/components/dashboard/charts/dashboard-pri
 import { DashboardVolumeChart } from '@/components/dashboard/charts/dashboard-volume-chart'
 import { DashboardContractsChart } from '@/components/dashboard/charts/dashboard-contracts-chart'
 import { DashboardPendingContracts } from '@/components/dashboard/dashboard-pending-contracts'
-import { dashboardData } from '@/lib/mocks/dashboard'
+// import { dashboardData } from '@/lib/mocks/dashboard'
 import { PageHeader } from '@/components/layout/pages/page-header'
 import Link from 'next/link'
 import { cn } from '@/lib/utils'
@@ -44,14 +44,14 @@ export function DashboardView() {
           Github repository
         </Link>
       </PageHeader>
-      <DashboardStats data={dashboardData.statsCards} />
+      {/* <DashboardStats data={dashboardData.statsCards} /> */}
       <section className="grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-7">
-        <DashboardPriceChart data={dashboardData.priceChart} />
-        <DashboardPendingContracts data={dashboardData.pendingDisputes} />
+        {/* <DashboardPriceChart data={dashboardData.priceChart} /> */}
+        {/* <DashboardPendingContracts data={dashboardData.pendingDisputes} /> */}
       </section>
       <section className="grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-7">
-        <DashboardContractsChart data={dashboardData.statusChart} />
-        <DashboardVolumeChart data={dashboardData.volumeChart} />
+        {/* <DashboardContractsChart data={dashboardData.statusChart} /> */}
+        {/* <DashboardVolumeChart data={dashboardData.volumeChart} /> */}
       </section>
     </>
   )
